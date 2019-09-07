@@ -1,5 +1,5 @@
                                                          
-                                                        !!Welcome!!
+                                              !!Welcome!!
                           
                          
                          
@@ -22,5 +22,27 @@
 <p><div id="Identicon_named"></div>
 <p><img id = "Identicon" height = "0" width = "0"></img></p>
 
-
+<script>
+                function myFunction() {
+                var login = document.getElementById("user").value;
+                var query = `query User($login: String!) {
+                                user(login: $login) {
+                                    login
+                                    name
+                                    avatarUrl
+                                    bio
+                                }
+                            }`
+                fetch('https://api.github.com/graphql', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'bearer 3249bd7f85a30de1dc04e6f07cc8a877e45cdce8',
+                    },
+                    body: JSON.stringify({
+                        query,
+                        variables: { login },
+                    })
+                })
 
